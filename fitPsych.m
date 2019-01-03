@@ -1,12 +1,10 @@
-function [paramsValues] = fitPsych(varargin)
+function output = fitPsych(varargin)
 %Fit cumulative Gaussian psychometric function using Palamedes function
 %PAL_PFML_Fit. Two possible input options:
-
 %INPUT OPTION 1: Output struct from trialBlock
 % fitPsych(output_struct)
 %REQUIRED INPUT:
 %   - output_struct = output struct from trialBlock
-
 %INPUT OPTION 2: Multiple variables
 %REQUIRED INPUTS:
 % fitPsych(trial_unit, trial_resp, stim_levels)
@@ -14,12 +12,10 @@ function [paramsValues] = fitPsych(varargin)
 %   - trial_resp = array of responses (1 = positive, 0 = negative)
 %   corresponding to each the trial units in trial_unit
 %   - stim_levels = array of all possible units used in the study
-
 %OUTPUT:
-%   - paramsValues = array with two values. paramsValues(1) is the
-%   threshold. paramsValues(2) is the beta parameter of the function, which
-%   is the INVERSE of the slope. Calculate the slope parameter as
-%   1./(paramsValues(2)
+%   - output = struct with two values. output.threshold is the
+%   threshold. output.slopw is the slope of the function (the inverse of
+%   the beta paramter
 
 if length(varargin) == 1
     output_data = varargin{1};
@@ -40,4 +36,12 @@ end
     searchGrid.lambda = 0;           
     [STIM, HIT, N] = PAL_PFML_GroupTrialsbyX(trial_unit, trial_resp, ones(size(trial_resp)));
     [paramsValues] = PAL_PFML_Fit(STIM, HIT, N, searchGrid, [1 1 0 0 ], @PAL_CumulativeNormal);
+    
+    output.threshold = paramsValues(1);
+    output.slope = 1./paramsValues(2);
+%     output.trial_unit = trial_unit;
+%     output.trial_unit_fit = trial_unit;
+%     output.trial_resp = trial_resp;
+%     output.trial_resp_fit = trial_resp;
 end
+
