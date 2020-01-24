@@ -22,6 +22,8 @@ IMPORTANT NOTE REGARDING PALAMEDES
 Please note that the Palamedes Toolbox, which is required to use Escalator, 
 is not in any way associated with the Escalator Toolbox project. Escalator calls Palamedes toolbox functions for curve fitting, bootstrapping, and goodness of fit procedures. If you use the Escalator Toolbox, be sure to acknowledge the use of the Palamedes Toolbox in your paper:
 
+Prins, N & Kingdom, F. A. A. (2018) Applying the Model-Comparison Approach to Test Specific Research Hypotheses in Psychophysical Research Using the Palamedes Toolbox. Frontiers in Psychology, 23. https://doi.org/10.3389/fpsyg.2018.01250. 
+
 Prins, N & Kingdom, F. A. A. (2009) Palamedes: Matlab routines for analyzing psychophysical data.  http://www.palamedestoolbox.org 
 
 PURPOSE
